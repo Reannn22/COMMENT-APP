@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/comments.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ Comments Board ✨</h1>
+            <a href="/comments/create" class="add-comment-btn">Add New Comment</a>
+        </div>
+
+        <div class="comments-list">
+            <% for(let comment of comments) { %>
+                <div class="comment-card">
+                    <div class="comment-header">
+                        <span class="username"><%= comment.username %></span>
+                        <div class="comment-actions">
+                            <a href="/comments/<%= comment.id %>" class="action-btn detail-btn">Detail</a>
+                            <a href="/comments/<%= comment.id %>/edit" class="action-btn edit-btn">Edit</a>
+                            <form style="display: inline;" method="POST" action="/comments/<%= comment.id %>?_method=DELETE">
+                                <button class="action-btn delete-btn">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                    <p class="comment-text"><%= comment.text %></p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
